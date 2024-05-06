@@ -35,6 +35,14 @@ pipeline {
                 '''
             }
         }
+
+        stage('Notify') {
+            steps {
+                slackSend message: 'BUILD successful!',
+                channel: '#emotipress',
+                color: 'good',
+            }
+        }
     }
 }
 
