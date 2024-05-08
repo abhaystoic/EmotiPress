@@ -4,6 +4,7 @@ import json
 import os
 
 from newsapi.newsapi_client import NewsApiClient
+from newsapi.newsapi_exception import NewsAPIException
 from celery import Celery
 from celery import Task
 from celery.utils.log import get_task_logger
@@ -39,7 +40,7 @@ class GetHeadlinesTask(Task):
     try:
       top_headlines_res = self.news_api.get_top_headlines(
         country='in', page_size=100)
-    except newsapi.newsapi_exception.NewsAPIException as err:
+    except NewsAPIException as err:
       print('NewsAPI Exception==', err)
       if not retry:
         print('Retrying with another key...')
