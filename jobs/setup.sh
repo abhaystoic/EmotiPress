@@ -1,5 +1,8 @@
 #!/bin/sh
+apt-get install rabbitmq-server
+
 export ENVIRONMENT=DEV
+
 mkdir -p ~/emotipress/celery/logs/
 mkdir -p ~/emotipress/celery-beat/logs/
 celery -A jobs.headlines.get_headlines worker --loglevel=info  -f ~/emotipress/logs/headlines-worker.log -Q headlines

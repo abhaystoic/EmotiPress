@@ -1,9 +1,9 @@
 """Celery task for fetching news highlights."""
 
 import json
-import newsapi
 import os
 
+from newsapi.newsapi_client import NewsApiClient
 from celery import Celery
 from celery import Task
 from celery.utils.log import get_task_logger
@@ -26,7 +26,7 @@ class GetHeadlinesTask(Task):
   
   def configure_news_api(self):
     """Configures the News API."""
-    self.news_api = newsapi.NewsApiClient(self.api_key)
+    self.news_api = NewsApiClient(self.api_key)
 
   def run(self):
     headlines = self.get_headlines()
