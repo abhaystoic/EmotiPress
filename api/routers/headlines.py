@@ -1,3 +1,4 @@
+import json
 import os
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -22,7 +23,7 @@ router = APIRouter(
 
 
 @router.get(
-        "/{page_num}",
+        "/",
         tags=["custom"],
         responses={403: {"description": "Operation forbidden"}})
 async def read_headlines(page_num: int = 1):
@@ -33,33 +34,30 @@ async def read_headlines(page_num: int = 1):
   logger.warning("Dummy Warning")
   mongo_client = MongoClient(MONGO_CONNECTION_STRING)
   db = mongo_client.news
-  collection = db['headlines']
+  collection = db['headline']
   total_docs = collection.count_documents({})
-  print(total_docs, ' total documents.')
-  print(f'page_num == {page_num}')
-  current_page = int(page_num)
-  if (current_page > total_docs):
+  logger.debug(f"total documents: {total_docs}")
+  if (page_num > total_docs):
     results = {
       'records': [],
       'max_pages': total_docs,
     }
     return results
   
-  record_index_as_per_page = current_page - 1
+  record_index_as_per_page = page_num - 1
   records = [
     document for document in collection.aggregate(
       [
-        {'$sort':{'created_time':-1}},
-        {'$limit': current_page}
+        {'$sort':{'date_done':-1}},
+        {'$limit': page_num}
       ],
       allowDiskUse=True)][record_index_as_per_page]
+  result = json.loads(records['result'])
   final_results = {
-    'created_time': records['created_time'],
-    'articles': [],
+    'created_time': records['date_done'],
+    'articles': result['articles'],
   }
-  for rec in records['news']:
-    for article in rec['articles']:
-      final_results['articles'].append(article)
+  
   results = {
     'records': final_results,
     'max_pages': total_docs,
