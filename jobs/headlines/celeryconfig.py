@@ -30,8 +30,9 @@ mongodb_backend_settings = {
 }
 beat_schedule = {
   'every_hour': {
-    'task': 'fetch-headlines-task',
+    'task': 'get-headlines-task',
     'options': {'queue': 'headlines'},
     'schedule': crontab(minute=0, hour='*/1'), # Every hour.
+    # 'schedule': crontab(minute='*/1'), # Every minute
   }
 }
