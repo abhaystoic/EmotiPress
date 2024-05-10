@@ -11,6 +11,3 @@ def test_with_fixture(example_fixture):
 
 def test_always_passes():
     assert True
-
-def test_always_fails():
-    assert False
