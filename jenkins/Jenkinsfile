@@ -20,6 +20,7 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
+                    pytest
                     cd jenkins/myapp
                     python3 hello.py
                     python3 hello.py --name=Brad
