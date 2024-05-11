@@ -8,7 +8,8 @@ import requests
 def test_with_fixture(example_fixture):
     assert example_fixture == 1
 
-def test_always_passes(disable_network_calls):
+@pytest.mark.slow()
+def test_with_slow_marker(disable_network_calls):
     assert True
 
 @pytest.mark.usefixtures('disable_network_calls')
