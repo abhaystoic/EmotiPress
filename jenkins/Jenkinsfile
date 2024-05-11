@@ -21,13 +21,12 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                    coverage erase
                     python3 -m pytest
                     cd jenkins/myapp
                     python3 hello.py
                     python3 hello.py --name=Brad
-                    coverage run -m pytest
-                    coverage report -m
+                    python3 -m coverage run -m pytest
+                    python3 -m coverage report -m
                 '''
             }
         }
@@ -43,9 +42,56 @@ pipeline {
 
         stage('Notify') {
             steps {
-                slackSend(message: 'BUILD successful!', channel: '#emotipress', color: 'good')
+                slackSend(message: 'Jenkins pipeline execution completed.', channel: '#emotipress', color: 'good')
             }
         }
+    }
+
+    post { 
+        always { 
+            slackSend(message: 'Post BUILD...', channel: '#emotipress', color: 'good')
+        }
+
+        fixed{
+            echo 'Build Fixed'
+            slackSend(message: 'BUILD Fixed!', channel: '#emotipress', color: 'good')
+        }
+
+        regression{
+            echo 'Build Broken due to latest changes'
+            slackSend(message: 'BUILD Broken!', channel: '#emotipress', color: 'good')
+        }
+
+        aborted{
+            echo 'Build Aborted manually'
+            slackSend(message: 'BUILD Aborted!', channel: '#emotipress', color: 'good')
+        }
+
+        failure{
+            echo 'Build failed'
+            slackSend(message: 'BUILD FAILED!', channel: '#emotipress', color: 'good')
+        }
+
+        success{    
+            echo 'Build Successful'
+            slackSend(message: 'BUILD Successful!', channel: '#emotipress', color: 'good')
+        }
+
+        unstable{
+            echo 'Build unstable'
+            slackSend(message: 'BUILD unstable!', channel: '#emotipress', color: 'good')
+        }
+
+        unsuccessful{
+            echo 'Build unsuccessful'
+            slackSend(message: 'BUILD unsuccessful!', channel: '#emotipress', color: 'good')
+        }
+
+        cleanup{
+            echo 'Build Cleaned up'
+            sh '''python3 -m coverage erase'''
+            slackSend(message: 'BUILD Cleaned up!', channel: '#emotipress', color: 'good')
+        }   
     }
 }
 
