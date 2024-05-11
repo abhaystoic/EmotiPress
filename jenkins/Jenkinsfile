@@ -21,10 +21,13 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
+                    coverage erase
                     python3 -m pytest
                     cd jenkins/myapp
                     python3 hello.py
                     python3 hello.py --name=Brad
+                    coverage run -m pytest
+                    coverage report -m
                 '''
             }
         }
