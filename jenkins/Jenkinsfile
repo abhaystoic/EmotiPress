@@ -49,7 +49,7 @@ pipeline {
 
     post { 
         always { 
-            slackSend(message: 'Post BUILD...', channel: '#emotipress', color: 'good')
+            slackSend(message: 'Post BUILD...', channel: '#emotipress', color: '#339BFF')
         }
 
         fixed{
@@ -59,17 +59,17 @@ pipeline {
 
         regression{
             echo 'Build Broken due to latest changes'
-            slackSend(message: 'BUILD Broken!', channel: '#emotipress', color: 'good')
+            slackSend(message: 'BUILD Broken!', channel: '#emotipress', color: 'danger')
         }
 
         aborted{
             echo 'Build Aborted manually'
-            slackSend(message: 'BUILD Aborted!', channel: '#emotipress', color: 'good')
+            slackSend(message: 'BUILD Aborted!', channel: '#emotipress', color: 'warning')
         }
 
         failure{
             echo 'Build failed'
-            slackSend(message: 'BUILD FAILED!', channel: '#emotipress', color: 'good')
+            slackSend(message: 'BUILD FAILED!', channel: '#emotipress', color: 'danger')
         }
 
         success{    
@@ -79,12 +79,12 @@ pipeline {
 
         unstable{
             echo 'Build unstable'
-            slackSend(message: 'BUILD unstable!', channel: '#emotipress', color: 'good')
+            slackSend(message: 'BUILD unstable!', channel: '#emotipress', color: 'danger')
         }
 
         unsuccessful{
             echo 'Build unsuccessful'
-            slackSend(message: 'BUILD unsuccessful!', channel: '#emotipress', color: 'good')
+            slackSend(message: 'BUILD unsuccessful!', channel: '#emotipress', color: 'red')
         }
 
         cleanup{
