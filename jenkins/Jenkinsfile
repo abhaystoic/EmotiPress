@@ -9,6 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building.."
+                echo "BUILD INFO: ${env.JOB_NAME} - ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
                 sh '''
                     pip install -r requirements.txt --break-system-packages
                     cd jenkins/myapp
