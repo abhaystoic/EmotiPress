@@ -89,7 +89,7 @@ pipeline {
             echo 'Build Cleaned up'
             sh '''python3 -m coverage erase'''
             slackSend(message: 'BUILD Cleaned up!', channel: '#emotipress', color: 'good')
-            slackSend(message:"BUILD INFO: ${env.JOB_NAME} (${env.BUILD_TIMESTAMP}) - ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", channel: '#emotipress', color: '#339BFF')
+            slackSend(message:"BUILD INFO: ${env.JOB_NAME} - ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", channel: '#emotipress', color: '#339BFF')
         }   
     }
 }

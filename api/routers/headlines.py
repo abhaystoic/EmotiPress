@@ -54,12 +54,8 @@ async def read_headlines(page_num: int = 1):
       allowDiskUse=True)][record_index_as_per_page]
   result = json.loads(records['result'])
   final_results = {
-    'created_time': records['date_done'],
     'articles': result['articles'],
-  }
-  
-  results = {
-    'records': final_results,
     'max_pages': total_docs,
+    'created_time': records['date_done'],
   }
-  return results
+  return final_results
