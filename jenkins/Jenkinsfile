@@ -12,19 +12,26 @@ pipeline {
                 echo "BUILD INFO: ${env.JOB_NAME} - ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
                 sh '''
                     pip install -r requirements.txt --break-system-packages
-                    cd jenkins/myapp
-                    pip install -r requirements.txt --break-system-packages
+                    cd app
+                    npm install
+                    cd ..
                 '''
             }
         }
 
         stage('Test') {
             steps {
-                echo "Testing.."
+                echo "Testing Backend..."
                 sh '''
                     python3 -m pytest
                     python3 -m coverage run -m pytest
                     python3 -m coverage report -m
+                    '''
+                echo "Testing Frontend..."
+                sh '''
+                    cd app
+                    npm test
+                    cd ..
                 '''
             }
         }

@@ -23,15 +23,19 @@ const Home = () => {
   const element = (
     <>
       <table>
-        <tr>
-          <th>Name</th>
-        </tr>
-        <tr>
-          <td>John</td>
-        </tr>
-        <tr>
-          <td>Elsa</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John</td>
+          </tr>
+          <tr>
+            <td>Elsa</td>
+          </tr>
+        </tbody>
       </table>
       <Car/>
       <p>Current Name: {textarea}, current car: {myCar}</p>
