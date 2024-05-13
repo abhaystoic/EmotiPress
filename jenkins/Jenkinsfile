@@ -13,6 +13,7 @@ pipeline {
                 sh '''
                     pip install -r requirements.txt --break-system-packages
                     cd app
+                    apt-get install -y nodejs
                     npm install
                     cd ..
                 '''
