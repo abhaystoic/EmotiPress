@@ -22,7 +22,7 @@ const Home = () => {
 
   const element = (
     <>
-      <table>
+      {/* <table>
         <thead>
           <tr>
             <th>Name</th>
@@ -36,17 +36,19 @@ const Home = () => {
             <td>Elsa</td>
           </tr>
         </tbody>
-      </table>
-      <Car/>
-      <p>Current Name: {textarea}, current car: {myCar}</p>
-      <form>
-        <textarea value={textarea} onChange={handleChange} />
-        <select value={myCar} onChange={handleOptionChange}>
-          <option value="Ford">Ford</option>
-          <option value="Volvo">Volvo</option>
-          <option value="Fiat">Fiat</option>
-        </select>
-      </form>
+      </table> */}
+      {/* <Car/> */}
+      <div>
+        <p>Current Name: {textarea}, current car: {myCar}</p>
+        <form>
+          <textarea value={textarea} onChange={handleChange} />
+          <select value={myCar} onChange={handleOptionChange}>
+            <option value="Ford">Ford</option>
+            <option value="Volvo">Volvo</option>
+            <option value="Fiat">Fiat</option>
+          </select>
+        </form>
+      </div>
     </>
   );
   return element;

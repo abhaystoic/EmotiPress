@@ -82,10 +82,10 @@ function App() {
   return (
     <div className="App">
       <>
-        <FirstTest />
-        <TestWithMockData data={mockData} 
+        {/* <FirstTest /> */}
+        {/* <TestWithMockData data={mockData} 
                           displayUnorderedList={true} 
-                          handleClick={() => console.log("email link clicked 1")}/>
+                          handleClick={() => console.log("email link clicked 1")}/> */}
         {myelement}
       </>
     </div>
