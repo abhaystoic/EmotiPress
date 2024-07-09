@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 
 const Notifications = () => {
+
+  const title = 'Notifications';
+  useEffect(() => {
+    document.title = title;
+  });
   var ws = null;
   const [notifications, setNotifications] = useState([]);
   var room_id = 121;
@@ -17,7 +22,7 @@ const Notifications = () => {
   
   let element = (
     <>
-      <h1>Notifications</h1>
+      <h1>{title}</h1>
       <ul>
         {notifications.map((notif) => {
           return <li id="notif">{notif}</li>;

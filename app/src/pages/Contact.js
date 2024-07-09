@@ -1,5 +1,13 @@
+import { useEffect } from "react";
+
 const Contact = () => {
-  return <h1>Contact Me</h1>;
+  const title = 'Contact Me';
+  
+  useEffect(() => {
+    document.title = title;
+  });
+  
+  return <h1> {title} </h1>;
 };
 
 export default Contact;

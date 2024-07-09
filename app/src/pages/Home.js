@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import {Car} from '../Car.js';
 // import { GoogleOAuthProvider } from "@react-oauth/google";
 
@@ -9,6 +9,12 @@ const Home = () => {
     REACT_APP_TEMPLATE_ID, 
     REACT_APP_SERVICE_ID 
   } = process.env;
+
+  const title = 'Home';
+  
+  useEffect(() => {
+    document.title = title;
+  });
 
   const [textarea, setTextarea] = useState(
     "The content of a textarea goes in the value attribute"
@@ -29,7 +35,7 @@ const Home = () => {
   }
 
   const element = (
-    <><h1>Home</h1>
+    <><h1>{title}</h1>
       {/* <table>
         <thead>
           <tr>

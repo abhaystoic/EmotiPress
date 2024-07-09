@@ -1,6 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SendNotifications = () => {
+
+  const title = 'Notify';
+  
+  useEffect(() => {
+    document.title = title;
+  });
+
   var room_id = 121;
   const [notifyInputs, setNotifyInputs] = useState({});
 
@@ -23,7 +30,7 @@ const SendNotifications = () => {
   
   let element = (
     <>
-      <h1>Notify</h1>
+      <h1>{title}</h1>
       <form onSubmit={handleSubmit}>
           <input type="text" id="messageText" name="messageText" onChange={handleChange} autoComplete="off"/>
           <button>Send</button>

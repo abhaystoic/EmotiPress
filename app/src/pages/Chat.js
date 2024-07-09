@@ -3,7 +3,11 @@ import { useEffect } from "react";
 const Chat = () => {
   var ws = null;
   var ws_message = '';
+
+  const title = 'Chat';
+
   useEffect(() => {
+      document.title = title;
       ws = new WebSocket("ws://localhost:8000/ws");
       ws.onmessage = (event) => {
         console.log(event.data);
@@ -15,7 +19,7 @@ const Chat = () => {
   }, []);
   let element = (
     <>
-      <h1>Chat</h1>
+      <h1>{title}</h1>
       <div>Message: {ws_message}</div>
     </>
   );
