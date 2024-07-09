@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
-import {Car} from '../Car.js';
+// import {Car} from '../Car.js';
+// import { GoogleOAuthProvider } from "@react-oauth/google";
+
 
 const Home = () => {
+  const { 
+    REACT_APP_API_KEY, 
+    REACT_APP_TEMPLATE_ID, 
+    REACT_APP_SERVICE_ID 
+  } = process.env;
+
   const [textarea, setTextarea] = useState(
     "The content of a textarea goes in the value attribute"
   );
@@ -21,7 +29,7 @@ const Home = () => {
   }
 
   const element = (
-    <>
+    <><h1>Home</h1>
       {/* <table>
         <thead>
           <tr>
@@ -38,7 +46,7 @@ const Home = () => {
         </tbody>
       </table> */}
       {/* <Car/> */}
-      <div>
+      {/* <div>
         <p>Current Name: {textarea}, current car: {myCar}</p>
         <form>
           <textarea value={textarea} onChange={handleChange} />
@@ -48,7 +56,7 @@ const Home = () => {
             <option value="Fiat">Fiat</option>
           </select>
         </form>
-      </div>
+      </div> */}
     </>
   );
   return element;

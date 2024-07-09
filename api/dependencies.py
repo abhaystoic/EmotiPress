@@ -1,8 +1,7 @@
 from typing import Annotated
 
-from fastapi import FastAPI, Header, HTTPException
+from fastapi import Header, HTTPException
 
-app = FastAPI()
 
 async def get_token_header(x_token: Annotated[str, Header()] = "fake-super-secret-token"):
     if x_token != "fake-super-secret-token":
