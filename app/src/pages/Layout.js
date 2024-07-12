@@ -2,51 +2,53 @@ import { Outlet, Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import "./Layout.css";
 
 const Layout = () => {
-  const [ user, setUser ] = useState();
   const [ profile, setProfile ] = useState();
 
-  const login = useGoogleLogin({
-    onSuccess: (codeResponse) => setUser(codeResponse),
-    onError: (error) => console.log('Login Failed:', error),
-    // accessType: "offline",
-    // responseType: "code",
-    // prompt: "consent",
-    // flow: "auth-code"
-  });
+  const setUserDetailsUsingCode = (googleLoginCode) => {    
+    axios
+      .get(`http://127.0.0.1:8000/auth/login/?code=${googleLoginCode}`, {
+        headers: {
+          Accept: 'application/json'
+        }
+      })
+      .then((res) => {
+        console.log(res.data);
+        setProfile(res.data);
+        Cookies.set(
+            "emotipress_token",
+            googleLoginCode,
+            { expires: 7, secure: true });
+      })
+      .catch((err) => console.log("Error whitl setting user details: ", err));
+  };
 
-  useEffect(() => {
-    if (user) {
-      console.log(user);
-      axios
-        .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
-          headers: {
-            Authorization: `Bearer ${user.access_token}`,
-            Accept: 'application/json'
-          }
-        })
-        .then((res) => {
-          console.log(res.data);
-          setProfile(res.data);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [user]);
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => setUserDetailsUsingCode(codeResponse.code),
+    onError: (error) => console.log('Login Failed:', error),
+    accessType: "offline",
+    responseType: "code",
+    prompt: "consent",
+    flow: "auth-code"
+  });
 
   // log out function to log the user out of google and set the profile array to null
   const logOut = () => {
       googleLogout();
       setProfile(null);
+      Cookies.remove("emotipress_token");
   };
-  const responseMessage = (response) => {
-    console.log(response);
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
+  
+  useEffect(() => {
+    const token = Cookies.get("emotipress_token");
+    if (token) {
+      setUserDetailsUsingCode(token);
+    }
+  }, []);
 
   return (
     <>
