@@ -9,48 +9,6 @@ import NoPage from "./pages/NoPage";
 import Chat from './pages/Chat';
 import Notifications from './pages/Notifications';
 import SendNotifications from './pages/SendNotifications';
-// import Auth from './components/Auth';
-// import { GoogleLogin } from "@react-oauth/google";
-
-// const FirstTest = () => {
-//   return (
-//     <div>
-//       <h2>First Test</h2>
-//     </div>
-//   )
-// }
-
-// const TestWithMockData = ({data, displayUnorderedList, handleClick}) => {
-//   return (
-//         <div>
-//             {displayUnorderedList ? 
-//                 <ul>
-//                     {data.map(item => (
-//                         <li key={item.id}>
-//                             {item.id}, 
-//                             {item.first_name},
-//                             <a onClick={() => {
-//                                 console.log("email link clicked")
-//                                 handleClick()
-//                             }}>{item.email}</a>
-
-//                             {item.age > 50 ? 'Senior' : 'Not senior'}
-
-//                         </li>
-//                     ))}
-//                 </ul>
-//             : 
-//                 <ol>
-//                     {data.map(item => (
-//                         <li key={item.id}>
-//                             Last name: {item.last_name}
-//                         </li>
-//                     ))}
-//                 </ol>
-//             }
-//         </div>
-//       )
-// } 
 
 function App() {
   const myelement = (
@@ -71,22 +29,7 @@ function App() {
     </>
   );
 
-  // const mockData = [
-  //   {
-  //       "id": 1,
-  //       "first_name": "Fletcher",
-  //       "last_name": "McVanamy",
-  //       "email": "mmcvanamy0@e-recht24.de",
-  //       "age": 30
-  //     }, {
-  //       "id": 2,
-  //       "first_name": "Clarice",
-  //       "last_name": "Harrild",
-  //       "email": "charrild1@dion.ne.jp",
-  //       "age": 35
-  //     }, 
-  // ]
-  return (
+return (
     <div className="App">
       {myelement}
     </div>

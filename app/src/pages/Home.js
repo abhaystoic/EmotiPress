@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import {Car} from '../Car.js';
-// import { GoogleOAuthProvider } from "@react-oauth/google";
 
 
 const Home = () => {
@@ -35,34 +33,8 @@ const Home = () => {
   }
 
   const element = (
-    <><h1>{title}</h1>
-      {/* <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>John</td>
-          </tr>
-          <tr>
-            <td>Elsa</td>
-          </tr>
-        </tbody>
-      </table> */}
-      {/* <Car/> */}
-      {/* <div>
-        <p>Current Name: {textarea}, current car: {myCar}</p>
-        <form>
-          <textarea value={textarea} onChange={handleChange} />
-          <select value={myCar} onChange={handleOptionChange}>
-            <option value="Ford">Ford</option>
-            <option value="Volvo">Volvo</option>
-            <option value="Fiat">Fiat</option>
-          </select>
-        </form>
-      </div> */}
+    <>
+      <h1>{title}</h1>
     </>
   );
   return element;
