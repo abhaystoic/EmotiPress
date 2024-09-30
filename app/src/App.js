@@ -9,6 +9,7 @@ import NoPage from "./pages/NoPage";
 import Chat from './pages/Chat';
 import Notifications from './pages/Notifications';
 import SendNotifications from './pages/SendNotifications';
+import StrictModeDemo  from './pages/StrictModeDemo';
 
 function App() {
   const myelement = (
@@ -16,13 +17,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="notifications" element={<Notifications />} />
-            <Route path="sendNotifications" element={<SendNotifications />} />
-            <Route path="chat" element={<Chat />} />
-            <Route path="blogs" element={<Blogs />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="*" element={<NoPage />} />
+          <Route index element={<Home />} />
+          <Route path="notifications" element={<Notifications />} />
+          <Route path="sendNotifications" element={<SendNotifications />} />
+          <Route path="chat" element={<Chat />} />
+          <Route path="blogs" element={<Blogs />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="strict-mode-demo" element={<StrictModeDemo />} />
+          <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

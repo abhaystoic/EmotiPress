@@ -24,7 +24,7 @@ const Layout = () => {
             googleLoginCode,
             { expires: 7, secure: true });
       })
-      .catch((err) => console.log("Error whitl setting user details: ", err));
+      .catch((err) => console.log("Error while setting user details: ", err));
   };
 
   const login = useGoogleLogin({
@@ -59,6 +59,9 @@ const Layout = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
+              <Link to="strict-mode-demo">Strict Mode Demo</Link>
+            </li>
+            <li>
               <Link to="/notifications">Notifications</Link>
             </li>
             <li>
@@ -68,7 +71,7 @@ const Layout = () => {
               <Link to="/chat">Chat</Link>
             </li>
             <li>
-              <Link to="/blogs">Lambda News</Link>
+              <Link to="/blogs">Blogs</Link>
             </li>
             <li>
               <Link to="/contact">Contact</Link>
